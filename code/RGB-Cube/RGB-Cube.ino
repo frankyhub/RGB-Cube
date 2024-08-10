@@ -6,7 +6,7 @@ Funktion: RGB-LED Cube mit Farbwechsel, LED Ring WS2812B und GY-521 3-Achsen-Gyr
 **************************************************************************************************
 Version: 09.08.2024
 **************************************************************************************************
-Board: ESP32 Dev Module ESP32 D1 Mini
+Board: LOLIN(WEMOS)D1 R2 & mini
 **************************************************************************************************
 Libraries:
 https://github.com/espressif/arduino-esp32/tree/master/libraries
@@ -19,6 +19,15 @@ Einstellungen:
 https://dl.espressif.com/dl/package_esp32_index.json
 http://dan.drown.org/stm32duino/package_STM32duino_index.json
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
+
+
+Verdrahtung:
+ESP8266 GY-521  WS2812B
+D1 SCL  SCL
+D2 SDA  SDA
+D3                IN
++5V     +5V       +5V
+GND     GND       GND
 **************************************************************************************************/
 #include <Arduino.h>
 #include <Adafruit_MPU6050.h>
@@ -33,7 +42,7 @@ float ytreshhold = 0.0;
 float ztreshhold = 0.0;
 
 #define NUM_LEDS 12
-#define DATA_PIN 25
+#define DATA_PIN D3
 
 CRGB leds[NUM_LEDS];
 
@@ -64,7 +73,7 @@ void loop()
 
   setTreshholds();
 
-  if (ztreshhold <= -4.5) // DOWN
+  if (ztreshhold <= -1) // DOWN
   {
     for (int i = 0; i < NUM_LEDS; i++)
     {
@@ -72,23 +81,23 @@ void loop()
     }
   }
 
-  else if (ztreshhold >= 4.5) // UP
+  else if (ztreshhold >= 1) // UP
   {
     for (int i = 0; i < NUM_LEDS; i++)
     {
-      leds[i].setRGB(0, 255, 0); // GREEN
+      leds[i].setRGB(0, 0, 255); // GREEN
     }
   }
 
-  else if (xtreshhold <= -4.5) // LEFT
+  else if (xtreshhold <= -1) // LEFT
   {
     for (int i = 0; i < NUM_LEDS; i++)
     {
-      leds[i].setRGB(0, 0, 255); // BLUE
+      leds[i].setRGB(0, 255, 0); // BLUE
     }
   }
 
-  else if (xtreshhold >= 4.5) // RIGHT
+  else if (xtreshhold >= 1) // RIGHT
   {
     for (int i = 0; i < NUM_LEDS; i++)
     {
@@ -96,7 +105,7 @@ void loop()
     }
   }
 
-  else if (ytreshhold <= -4.5) // FRONT
+  else if (ytreshhold <= -1) // FRONT
   {
 
     for (int i = 0; i < NUM_LEDS; i++)
