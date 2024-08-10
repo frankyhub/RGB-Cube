@@ -20,6 +20,8 @@ Dieses Repo beinhaltet einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 |  1 | LM2596S Netzteil   |
 |  1 | 9V Batterieclip   |
 |  1 | 9V Batterie  |
+|  1 |   Gehäuse |
+|  1 |   Polystyrol-Folie weiß DIN A4 |
 |   |   Kabel |
 | ---  | ---   |
 
