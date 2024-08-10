@@ -7,4 +7,7 @@ Dieses Repo beinhaltet einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 
 ![Bild](pic/RGB-Cube.png)
 
+## Verdrahtung
+
+![Bild](Verdrahtung/RGB-Cube.png)
 
