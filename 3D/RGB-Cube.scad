@@ -108,7 +108,7 @@ module cube_mod(){
      //      translate([size_cube / 0,8,10])    //cut hole for dc jack
 
         //cube([size_cube,usb_y,usb_z],center = true);
-         translate([ 6,-6,0])
+         translate([ -23,23 ,0])
         cylinder(d = d_dcjack, h = size_cube, $fn = 32);
     }
     
