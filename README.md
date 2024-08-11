@@ -15,6 +15,7 @@ Dieses Repo beinhaltet einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 | Anzahl | Bezeichnung | 
 | -------- | -------- | 
 |  1 |  ESP32 D1 Mini  |
+|  1 |  alt. ESP8266 |
 | 1  | WS2812B 50mm LED Ring   |
 |  1 |  GY-521 3-Achsen-Gyroskop  |
 |  1 | LM2596S Netzteil   |
@@ -29,6 +30,10 @@ Dieses Repo beinhaltet einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 ## Verdrahtung
 
 ![Bild](Verdrahtung/RGB-Cube.png)
+
+## Serieller Monitor
+
+![Bild](pic/sm_gyrtest.png)
 
 
 ---
