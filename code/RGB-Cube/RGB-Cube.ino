@@ -29,83 +29,73 @@ D3                IN
 +5V     +5V       +5V
 GND     GND       GND
 **************************************************************************************************/
-#include <Arduino.h>
-#include <Adafruit_MPU6050.h>
-#include <Adafruit_Sensor.h>
+//**************MPU6050*******************************************************
+#include "Wire.h" 
+#define MPU6050_ADDR 0x68 // Alternatively set AD0 to HIGH  --> Address = 0x69
+int16_t accX, accY, accZ, gyroX, gyroY, gyroZ, tRaw; // Raw register values (accelaration, gyroscope, temperature)
+char result[7]; // temporary variable used in convert function
+//***************************************************************************
+
+//************************WS2812B********************************************
+//#include <Arduino.h>
+//#include <Adafruit_MPU6050.h>
+//#include <Adafruit_Sensor.h>
 #include <Wire.h>
 #include <FastLED.h>
-
-Adafruit_MPU6050 mpu;
-
-float xtreshhold = 0.0;
-float ytreshhold = 0.0;
-float ztreshhold = 0.0;
-
 #define NUM_LEDS 12
 #define DATA_PIN D3
-
 CRGB leds[NUM_LEDS];
+//***************************************************************************
 
-void setTreshholds()
-{
-  sensors_event_t a, g, temp;
-  mpu.getEvent(&a, &g, &temp);
-  xtreshhold = (a.acceleration.x);
-  ytreshhold = (a.acceleration.y);
-  ztreshhold = (a.acceleration.z);
-}
+void setup() {
 
-void setup(void)
-{
-  Serial.begin(115200);
-  if (!mpu.begin())
-  {
-    Serial.println("Failed to find MPU6050 chip");
-    while (true)
-    {
-    }
-  }
+  //**************MPU6050*******************************************************
+  Serial.begin(115000);
+  Wire.begin();
+  Wire.beginTransmission(MPU6050_ADDR);
+  Wire.write(0x6B); // PWR_MGMT_1 register
+  Wire.write(0); // wake up!
+  Wire.endTransmission(true);
+//***************************************************************************
+
+  //**************WS2812*******************************************************
   FastLED.addLeds<WS2812, DATA_PIN, GRB>(leds, NUM_LEDS);
+ //***************************************************************************
 }
 
-void loop()
-{
 
-  setTreshholds();
+void loop() {
 
-  if (ztreshhold <= -1) // DOWN
-  {
-    for (int i = 0; i < NUM_LEDS; i++)
-    {
-      leds[i].setRGB(255, 0, 0); // RED
-    }
-  }
+  //**************MPU6050*******************************************************  
+  Wire.beginTransmission(MPU6050_ADDR);
+  Wire.write(0x3B); // starting with register 0x3B (ACCEL_XOUT_H)
+  Wire.endTransmission(false); // the parameter indicates that the Arduino will send a restart. 
+                               // As a result, the connection is kept active.
+  Wire.requestFrom(MPU6050_ADDR, 14, true); // request a total of 7*2=14 registers
 
-  else if (ztreshhold >= 1) // UP
-  {
-    for (int i = 0; i < NUM_LEDS; i++)
-    {
-      leds[i].setRGB(0, 0, 255); // GREEN
-    }
-  }
+ 
+  // "Wire.read()<<8 | Wire.read();" means two registers are read and stored in the same int16_t variable
+  accX = Wire.read()<<8 | Wire.read(); // reading registers: 0x3B (ACCEL_XOUT_H) and 0x3C (ACCEL_XOUT_L)
+  accY = Wire.read()<<8 | Wire.read(); // reading registers: 0x3D (ACCEL_YOUT_H) and 0x3E (ACCEL_YOUT_L)
+  accZ = Wire.read()<<8 | Wire.read(); // reading registers: 0x3F (ACCEL_ZOUT_H) and 0x40 (ACCEL_ZOUT_L)
+  tRaw = Wire.read()<<8 | Wire.read(); // reading registers: 0x41 (TEMP_OUT_H) and 0x42 (TEMP_OUT_L)
+  gyroX = Wire.read()<<8 | Wire.read(); // reading registers: 0x43 (GYRO_XOUT_H) and 0x44 (GYRO_XOUT_L)
+  gyroY = Wire.read()<<8 | Wire.read(); // reading registers: 0x45 (GYRO_YOUT_H) and 0x46 (GYRO_YOUT_L)
+  gyroZ = Wire.read()<<8 | Wire.read(); // reading registers: 0x47 (GYRO_ZOUT_H) and 0x48 (GYRO_ZOUT_L)
+  
+  Serial.print("AcX = "); Serial.print(toStr(accX));
+  Serial.print(" | AcY = "); Serial.print(toStr(accY));
+  Serial.print(" | AcZ = "); Serial.print(toStr(accZ));
+  // from data sheet:
+  Serial.print(" | tmp = "); Serial.print((tRaw + 12412.0) / 340.0);
+  Serial.print(" | GyX = "); Serial.print(toStr(gyroX));
+  Serial.print(" | GyY = "); Serial.print(toStr(gyroY));
+  Serial.print(" | GyZ = "); Serial.print(toStr(gyroZ));
+  Serial.println();
+//***************************************************************************
 
-  else if (xtreshhold <= -1) // LEFT
-  {
-    for (int i = 0; i < NUM_LEDS; i++)
-    {
-      leds[i].setRGB(0, 255, 0); // BLUE
-    }
-  }
-
-  else if (xtreshhold >= 1) // RIGHT
-  {
-    for (int i = 0; i < NUM_LEDS; i++)
-    {
-      leds[i].setRGB(255, 255, 0); // YELLOW
-    }
-  }
-
-  else if (ytreshhold <= -1) // FRONT
+//************** MPU6050 ******************************************************* 
+ if (accY <= 300 && accY >= 10 && accZ >8000) // gerade
   {
 
     for (int i = 0; i < NUM_LEDS; i++)
@@ -114,6 +104,48 @@ void loop()
     }
   }
 
+  else if (accX <= 700 && accY >= 2000 && accZ >8000) // links
+  {
+
+    for (int i = 0; i < NUM_LEDS; i++)
+    {
+      leds[i].setRGB(0, 255, 0); // grün
+    }
+  } 
+
+  else if (accX < 10  && accY <10 && accZ >8000) // rechts
+  {
+
+    for (int i = 0; i < NUM_LEDS; i++)
+    {
+      leds[i].setRGB(255, 255, 0); // gelb
+    }
+  }   
+
+    else if (accX < 10  && accY <10 && accZ <8000) // vorne
+  {
+
+    for (int i = 0; i < NUM_LEDS; i++)
+    {
+      leds[i].setRGB(255, 0, 0); // rot
+
+    }
+  }
+//***************************************************************************
   FastLED.setBrightness(20);
   FastLED.show();
+
+
+  
+  delay(500);
 }
+
+//***************************************************************************
+//***************************************************************************
+
+//**************MPU6050******************************************************* 
+char* toStr(int16_t character) { // converts int16 to string and formatting
+  sprintf(result, "%6d", character);
+  return result;
+}
+//***************************************************************************
