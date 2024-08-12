@@ -15,6 +15,9 @@ Dieses Repo beschreibt einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 ## 3D-Druck Gehäuse
 ![Bild](pic/RGB-Cube.png)
 
+## Gehäuse Folie
+![Bild](pic/Folie.png)
+
 
 ## Hardware
 
