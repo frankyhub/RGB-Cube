@@ -54,7 +54,7 @@ Dieses Repo beschreibt einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 
 ## Gyro-Sensor Test
 
-```
+```C++
 #include "Wire.h"
 
 #define MPU6050_ADDR 0x68 // Alternatively set AD0 to HIGH  --> Address = 0x69
