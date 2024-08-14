@@ -52,9 +52,7 @@ Dieses Repo beschreibt einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 
 ![Bild](pic/sm_gyrtest.png)
 
-## Rainbow-Lampe mit einem NANO
 
-![Bild](pic/Rainbow.png)
 
 ## Gyro-Sensor Test
 
@@ -108,7 +106,9 @@ char* toStr(int16_t character) { // converts int16 to string and formatting
   return result;
 }
 ```
+## Rainbow-Lampe mit einem NANO
 
+![Bild](pic/Rainbow.png)
 
 ---
 
