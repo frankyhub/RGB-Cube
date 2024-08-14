@@ -52,6 +52,10 @@ Dieses Repo beschreibt einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 
 ![Bild](pic/sm_gyrtest.png)
 
+## Rainbow-Lampe
+
+![Bild](pic/Rainbow.png)
+
 ## Gyro-Sensor Test
 
 ```C++
