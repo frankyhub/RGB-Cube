@@ -42,7 +42,7 @@ Dieses Repo beschreibt einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 | -------- | -------- | --- |
 |  D1 |  SCL   | SCL  |
 |  D2 |  SDA | | SDA |
-| D3  |---  | IN |
+| D3  | ...  | IN |
 |  +5V  |  +5V  | +5V |
 |  GND | GND   | GND  |
 |  --- | ---  | --- |
