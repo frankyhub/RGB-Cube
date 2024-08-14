@@ -38,7 +38,15 @@ Dieses Repo beschreibt einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 
 ## Verdrahtung
 
-![Bild](Verdrahtung/RGB-Cube.png)
+| ESP8266 | GY-521 | WS2812B | 
+| -------- | -------- | --- |
+|  D1 |  SCL   | SCL  |
+|  D2 |  SDA | | SDA
+| D3  |-  | IN |
+|  +5V  |  +5V  | +5V |
+|  GND | GND   | GND  |
+|  --- | ---  | --- |
+
 
 ## Serieller Monitor
 
