@@ -52,7 +52,7 @@ Dieses Repo beschreibt einen RGB-Cube mit automatischem Farbwechsel bei Bewegung
 
 ![Bild](pic/sm_gyrtest.png)
 
-## Rainbow-Lampe
+## Rainbow-Lampe mit einem NANO
 
 ![Bild](pic/Rainbow.png)
 
