@@ -113,12 +113,13 @@ void loop() {
     }
   } 
 
-  else if (accX < 10  && accY <10 && accZ >8000) // rechts
+  else if (accX < 7000  && accY < 500 && accZ >7000) // rechts
   {
 
     for (int i = 0; i < NUM_LEDS; i++)
     {
-      leds[i].setRGB(255, 255, 0); // gelb
+          //leds[i].setRGB(255, 0, 0); // rot
+            leds[i].setRGB(0, 255, 0255); // cyan
     }
   }   
 
@@ -127,7 +128,7 @@ void loop() {
 
     for (int i = 0; i < NUM_LEDS; i++)
     {
-      leds[i].setRGB(255, 0, 0); // rot
+        leds[i].setRGB(255, 255, 0); // gelb
 
     }
   }
