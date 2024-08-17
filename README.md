@@ -7,6 +7,8 @@ RGB-LED Cube mit Farbwechsel
 Dieses Repo beschreibt einen RGB-Cube mit automatischem Farbwechsel bei Bewegung des Würfels. Der RGB-Cube beinhaltet einen WS2812B 50mm LED Ring, ein  3-Achsen-Gyroskop und einen ESP8266.
 
 ## RGB-Cube
+![Bild](pic/Cyancube.png)
+
 ![Bild](pic/RGB-Cube2.png)
 
 ![Bild](pic/RGB-Cube3.png)
