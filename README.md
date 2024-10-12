@@ -1,5 +1,15 @@
 <a name="oben"></a>
 
+<div align="center">
+
+|[:skull:ISSUE](https://github.com/frankyhub/RGB-Cube/issues?q=is%3Aissue)|[:speech_balloon: Forum /Discussion](https://github.com/frankyhub/RGB-Cube/discussions)|[:grey_question:WiKi](https://github.com/frankyhub/RGB-Cube/wiki)||
+|--|--|--|--|
+| | | | |
+|![Static Badge](https://img.shields.io/badge/RepoNr.:-%2062-blue)|<a href="https://github.com/frankyhub/RGB-Cube/issues">![GitHub issues](https://img.shields.io/github/issues/frankyhub/RGB-Cube)![GitHub closed issues](https://img.shields.io/github/issues-closed/frankyhub/RGB-Cube)|<a href="https://github.com/frankyhub/RGB-Cube/discussions">![GitHub Discussions](https://img.shields.io/github/discussions/frankyhub/RGB-Cube)|<a href="https://github.com/frankyhub/RGB-Cube/releases">![GitHub release (with filter)](https://img.shields.io/github/v/release/frankyhub/RGB-Cube)|
+|![GitHub Created At](https://img.shields.io/github/created-at/frankyhub/RGB-Cube)| <a href="https://github.com/frankyhub/RGB-Cube/pulse" alt="Activity"><img src="https://img.shields.io/github/commit-activity/m/badges/shields" />| <a href="https://github.com/frankyhub/RGB-Cube/graphs/traffic"><img alt="ViewCount" src="https://views.whatilearened.today/views/github/frankyhub/github-clone-count-badge.svg">  |<a href="https://github.com/frankyhub?tab=stars"> ![GitHub User's stars](https://img.shields.io/github/stars/frankyhub)|
+</div>
+
+
 # RGB-Cube
 RGB-LED Cube mit Farbwechsel
 
